@@ -1,0 +1,19 @@
+{
+  "name": "@trendmicro/react-validation",
+  "description": "React Validation",
+  "authors": [
+    {
+      "name": "Cheton Wu",
+      "email": "cheton_wu@trend.com.tw",
+      "homepage": "https://github.com/cheton"
+    }
+  ],
+  "homepage": "https://github.com/trendmicro-frontend/react-validation",
+  "snapshots": [],
+  "keywords": [
+    "react",
+    "validation",
+    "react-validation"
+  ],
+  "license": "MIT"
+}
