@@ -14,7 +14,7 @@ Demo: https://trendmicro-frontend.github.io/react-validation
     npm install --save react @trendmicro/react-validation
     ```
 
-2. Install [react-validation](https://github.com/trendmicro-frontend/react-validation)` with <b>@trendmicro</b> scope:
+2. Install [react-validation](https://github.com/trendmicro-frontend/react-validation) with <b>@trendmicro</b> scope:
 
     ```js
     import {
