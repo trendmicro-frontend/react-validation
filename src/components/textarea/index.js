@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFormControl } from '../..';
 
-const Textarea = ({ error, isChanged, isUsed, ...props }) => (
+const Textarea = ({ error, blurred, changed, ...props }) => (
     <div>
         <textarea {...props} />
-        {isChanged && isUsed && error}
+        {blurred && changed && error}
     </div>
 );
 

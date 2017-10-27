@@ -52,10 +52,10 @@ export const required = (value, props, components) => {
 };
 
 export const password = (value, props, components) => {
-    const bothUsed = components.password[0].isUsed && components.confirm[0].isUsed;
-    const bothChanged = components.password[0].isChanged && components.confirm[0].isChanged;
+    const bothBlurred = components.password[0].blurred && components.confirm[0].blurred;
+    const bothChanged = components.password[0].changed && components.confirm[0].changed;
 
-    if (bothUsed && bothChanged && components.password[0].value !== components.confirm[0].value) {
+    if (bothBlurred && bothChanged && components.password[0].value !== components.confirm[0].value) {
         return (
             <Error>{'Passwords should be equal.'}</Error>
         );

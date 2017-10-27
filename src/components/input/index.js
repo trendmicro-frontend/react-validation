@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFormControl } from '../..';
 
-const Input = ({ error, isChanged, isUsed, ...props }) => (
+const Input = ({ error, blurred, changed, ...props }) => (
     <div>
         <input {...props} />
-        {isChanged && isUsed && error}
+        {blurred && changed && error}
     </div>
 );
 

@@ -193,8 +193,8 @@ const createForm = (options) => (WrappedComponent) => class Form extends PureCom
                         ...c,
                         props: {
                             ...c.props,
-                            isChanged: true,
-                            isUsed: true
+                            blurred: true,
+                            changed: true
                         }
                     };
                 }

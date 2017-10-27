@@ -33,17 +33,17 @@ const createFormControl = (options) => (WrappedComponent) => class FormControl e
         const { value } = { ...this.context.$validation.getProps(this) };
         return value || '';
     }
+    get blurred() {
+        const { blurred } = { ...this.context.$validation.getProps(this) };
+        return !!blurred;
+    }
+    get changed() {
+        const { changed } = { ...this.context.$validation.getProps(this) };
+        return !!changed;
+    }
     get error() {
         const { error } = { ...this.context.$validation.getProps(this) };
         return error;
-    }
-    get isChanged() {
-        const { isChanged } = { ...this.context.$validation.getProps(this) };
-        return !!isChanged;
-    }
-    get isUsed() {
-        const { isUsed } = { ...this.context.$validation.getProps(this) };
-        return !!isUsed;
     }
 
     componentDidMount() {
@@ -75,7 +75,7 @@ const createFormControl = (options) => (WrappedComponent) => class FormControl e
         this.context.$validation.setProps(this, {
             checked: event.target.checked,
             value: event.target.value,
-            isChanged: true
+            changed: true
         });
     };
 
@@ -86,7 +86,7 @@ const createFormControl = (options) => (WrappedComponent) => class FormControl e
 
         this.context.$validation.setProps(this, {
             value: event.target.value,
-            isUsed: true
+            blurred: true
         });
     };
 
