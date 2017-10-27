@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createFormControl } from '../..';
+import createFormControl from '../../createFormControl';
 
 const Select = ({ error, blurred, changed, ...props }) => (
     <div>

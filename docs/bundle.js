@@ -24316,7 +24316,7 @@ module.exports = __webpack_require__.p + "37f4597594857b017901209aae0a60e1.svg";
 
 /***/ }),
 
-/***/ "../src/components/form/index.js":
+/***/ "../src/components/Form/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24332,7 +24332,9 @@ var _react = __webpack_require__("../node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ = __webpack_require__("../src/index.js");
+var _createForm = __webpack_require__("../src/createForm.js");
+
+var _createForm2 = _interopRequireDefault(_createForm);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24360,11 +24362,11 @@ var Form = function Form(props) {
     return _react2.default.createElement('form', props);
 };
 
-exports.default = (0, _.createForm)(options)(Form);
+exports.default = (0, _createForm2.default)(options)(Form);
 
 /***/ }),
 
-/***/ "../src/components/input/index.js":
+/***/ "../src/components/Input/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24382,7 +24384,9 @@ var _propTypes = __webpack_require__("../node_modules/prop-types/index.js");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _ = __webpack_require__("../src/index.js");
+var _createFormControl = __webpack_require__("../src/createFormControl.js");
+
+var _createFormControl2 = _interopRequireDefault(_createFormControl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24390,15 +24394,15 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var Input = function Input(_ref) {
     var error = _ref.error,
-        isChanged = _ref.isChanged,
-        isUsed = _ref.isUsed,
-        props = _objectWithoutProperties(_ref, ['error', 'isChanged', 'isUsed']);
+        blurred = _ref.blurred,
+        changed = _ref.changed,
+        props = _objectWithoutProperties(_ref, ['error', 'blurred', 'changed']);
 
     return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement('input', props),
-        isChanged && isUsed && error
+        blurred && changed && error
     );
 };
 
@@ -24406,7 +24410,103 @@ Input.propTypes = {
     error: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.string])
 };
 
-exports.default = (0, _.createFormControl)()(Input);
+exports.default = (0, _createFormControl2.default)()(Input);
+
+/***/ }),
+
+/***/ "../src/components/Select/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__("../node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__("../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _createFormControl = __webpack_require__("../src/createFormControl.js");
+
+var _createFormControl2 = _interopRequireDefault(_createFormControl);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Select = function Select(_ref) {
+    var error = _ref.error,
+        blurred = _ref.blurred,
+        changed = _ref.changed,
+        props = _objectWithoutProperties(_ref, ['error', 'blurred', 'changed']);
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('select', props),
+        blurred && changed && error
+    );
+};
+
+Select.propTypes = {
+    error: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.string])
+};
+
+exports.default = (0, _createFormControl2.default)()(Select);
+
+/***/ }),
+
+/***/ "../src/components/Textarea/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__("../node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__("../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _createFormControl = __webpack_require__("../src/createFormControl.js");
+
+var _createFormControl2 = _interopRequireDefault(_createFormControl);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Textarea = function Textarea(_ref) {
+    var error = _ref.error,
+        blurred = _ref.blurred,
+        changed = _ref.changed,
+        props = _objectWithoutProperties(_ref, ['error', 'blurred', 'changed']);
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('textarea', props),
+        blurred && changed && error
+    );
+};
+
+Textarea.propTypes = {
+    error: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.string])
+};
+
+exports.default = (0, _createFormControl2.default)()(Textarea);
 
 /***/ }),
 
@@ -24625,8 +24725,8 @@ var createForm = function createForm(options) {
                                 if (!name || name === c.props.name) {
                                     return _extends({}, c, {
                                         props: _extends({}, c.props, {
-                                            isChanged: true,
-                                            isUsed: true
+                                            blurred: true,
+                                            changed: true
                                         })
                                     });
                                 }
@@ -24782,7 +24882,7 @@ var createFormControl = function createFormControl(options) {
                     _this.context.$validation.setProps(_this, {
                         checked: event.target.checked,
                         value: event.target.value,
-                        isChanged: true
+                        changed: true
                     });
                 }, _this.handleBlur = function (event) {
                     event.persist();
@@ -24791,7 +24891,7 @@ var createFormControl = function createFormControl(options) {
 
                     _this.context.$validation.setProps(_this, {
                         value: event.target.value,
-                        isUsed: true
+                        blurred: true
                     });
                 }, _temp), _possibleConstructorReturn(_this, _ret);
             }
@@ -24859,28 +24959,28 @@ var createFormControl = function createFormControl(options) {
                     return value || '';
                 }
             }, {
-                key: 'error',
+                key: 'blurred',
                 get: function get() {
                     var _context$$validation$3 = _extends({}, this.context.$validation.getProps(this)),
-                        error = _context$$validation$3.error;
+                        blurred = _context$$validation$3.blurred;
 
-                    return error;
+                    return !!blurred;
                 }
             }, {
-                key: 'isChanged',
+                key: 'changed',
                 get: function get() {
                     var _context$$validation$4 = _extends({}, this.context.$validation.getProps(this)),
-                        isChanged = _context$$validation$4.isChanged;
+                        changed = _context$$validation$4.changed;
 
-                    return !!isChanged;
+                    return !!changed;
                 }
             }, {
-                key: 'isUsed',
+                key: 'error',
                 get: function get() {
                     var _context$$validation$5 = _extends({}, this.context.$validation.getProps(this)),
-                        isUsed = _context$$validation$5.isUsed;
+                        error = _context$$validation$5.error;
 
-                    return !!isUsed;
+                    return error;
                 }
             }]);
 
@@ -24915,7 +25015,7 @@ exports.default = createFormControl;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createFormControl = exports.createForm = undefined;
+exports.Textarea = exports.Select = exports.Input = exports.Form = exports.createFormControl = exports.createForm = undefined;
 
 var _createForm2 = __webpack_require__("../src/createForm.js");
 
@@ -24925,10 +25025,30 @@ var _createFormControl2 = __webpack_require__("../src/createFormControl.js");
 
 var _createFormControl3 = _interopRequireDefault(_createFormControl2);
 
+var _Form2 = __webpack_require__("../src/components/Form/index.js");
+
+var _Form3 = _interopRequireDefault(_Form2);
+
+var _Input2 = __webpack_require__("../src/components/Input/index.js");
+
+var _Input3 = _interopRequireDefault(_Input2);
+
+var _Select2 = __webpack_require__("../src/components/Select/index.js");
+
+var _Select3 = _interopRequireDefault(_Select2);
+
+var _Textarea2 = __webpack_require__("../src/components/Textarea/index.js");
+
+var _Textarea3 = _interopRequireDefault(_Textarea2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.createForm = _createForm3.default;
 exports.createFormControl = _createFormControl3.default;
+exports.Form = _Form3.default;
+exports.Input = _Input3.default;
+exports.Select = _Select3.default;
+exports.Textarea = _Textarea3.default;
 
 /***/ }),
 
@@ -25215,13 +25335,7 @@ var _react = __webpack_require__("../node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _form = __webpack_require__("../src/components/form/index.js");
-
-var _form2 = _interopRequireDefault(_form);
-
-var _input = __webpack_require__("../src/components/input/index.js");
-
-var _input2 = _interopRequireDefault(_input);
+var _src = __webpack_require__("../src/index.js");
 
 var _portal = __webpack_require__("./portal.jsx");
 
@@ -25322,7 +25436,7 @@ var _default = function (_PureComponent) {
 
 
             return _react2.default.createElement(
-                _form2.default,
+                _src.Form,
                 {
                     ref: function ref(node) {
                         _this2.form = node;
@@ -25362,7 +25476,7 @@ var _default = function (_PureComponent) {
                         null,
                         'Name'
                     ),
-                    _react2.default.createElement(_input2.default, {
+                    _react2.default.createElement(_src.Input, {
                         type: 'text',
                         name: 'name',
                         value: name,
@@ -25382,7 +25496,7 @@ var _default = function (_PureComponent) {
                     _react2.default.createElement(
                         'div',
                         { className: 'clearfix' },
-                        _react2.default.createElement(_input2.default, {
+                        _react2.default.createElement(_src.Input, {
                             type: 'password',
                             name: 'oldPassword',
                             placeholder: changePassword ? 'Password' : '',
@@ -25412,7 +25526,7 @@ var _default = function (_PureComponent) {
                         null,
                         'New Password'
                     ),
-                    _react2.default.createElement(_input2.default, {
+                    _react2.default.createElement(_src.Input, {
                         type: 'password',
                         name: 'password',
                         placeholder: 'Password',
@@ -25428,7 +25542,7 @@ var _default = function (_PureComponent) {
                         null,
                         'Confirm Password'
                     ),
-                    _react2.default.createElement(_input2.default, {
+                    _react2.default.createElement(_src.Input, {
                         type: 'password',
                         name: 'confirm',
                         value: '',
@@ -25661,10 +25775,10 @@ var required = exports.required = function required(value, props, components) {
 };
 
 var password = exports.password = function password(value, props, components) {
-    var bothUsed = components.password[0].isUsed && components.confirm[0].isUsed;
-    var bothChanged = components.password[0].isChanged && components.confirm[0].isChanged;
+    var bothBlurred = components.password[0].blurred && components.confirm[0].blurred;
+    var bothChanged = components.password[0].changed && components.confirm[0].changed;
 
-    if (bothUsed && bothChanged && components.password[0].value !== components.confirm[0].value) {
+    if (bothBlurred && bothChanged && components.password[0].value !== components.confirm[0].value) {
         return _react2.default.createElement(
             Error,
             null,
@@ -25678,4 +25792,4 @@ var password = exports.password = function password(value, props, components) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?b8c3933f946f6ba1bb88
+//# sourceMappingURL=bundle.js.map?20c3e4f144d435db7080

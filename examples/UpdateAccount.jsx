@@ -2,8 +2,7 @@ import { Button } from '@trendmicro/react-buttons';
 import Modal from '@trendmicro/react-modal';
 import cx from 'classnames';
 import React, { PureComponent } from 'react';
-import Form from '../src/components/form';
-import Input from '../src/components/input';
+import { Form, Input } from '../src';
 import portal from './portal';
 import * as validations from './validations';
 

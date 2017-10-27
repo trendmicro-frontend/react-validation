@@ -1,5 +1,5 @@
 import React from 'react';
-import { createForm } from '../..';
+import createForm from '../../createForm';
 
 const options = {
     onValidate: function(props, errors) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createFormControl } from '../..';
+import createFormControl from '../../createFormControl';
 
 const Textarea = ({ error, blurred, changed, ...props }) => (
     <div>
