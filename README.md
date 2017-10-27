@@ -91,8 +91,7 @@ Let's put it all together:
 ### Sign In
 
 ```jsx
-import Form from '@trendmicro/react-validation/components/form';
-import Input from '@trendmicro/react-validation/components/input';
+import { Form, Input } from '@trendmicro/react-validation';
 import React, { Component } from 'react';
 import * as validations from './validations';
 
