@@ -10,25 +10,25 @@ Demo: https://trendmicro-frontend.github.io/react-validation
 
 1. Install the latest version of [react](https://github.com/facebook/react) and [react-validation](https://github.com/trendmicro-frontend/react-validation):
 
-  ```
-  npm install --save react @trendmicro/react-validation
-  ```
+    ```
+    npm install --save react @trendmicro/react-validation
+    ```
 
 2. Install [react-validation](https://github.com/trendmicro-frontend/react-validation)` with <b>@trendmicro</b> scope:
 
-  ```js
-  import { createForm, createFormControl } from '@trendmicro/react-validation';
-  import Form from '@trendmicro/react-validation/lib/components/form';
-  import Input from '@trendmicro/react-validation/lib/components/input';
-  import Select from '@trendmicro/react-validation/lib/components/select';
-  import Textarea from '@trendmicro/react-validation/lib/components/texarea';
-  ```
+    ```js
+    import {
+        createForm, createFormControl,
+        Form, Input, Select, Textarea
+    } from '@trendmicro/react-validation';
+    ```
 
 ## Usage
 
 First, define your own validation functions, like so:
 
-```js
+**validations.jsx**
+```jsx
 import isEmail from 'validator/lib/isEmail';
 
 const Error = (props) => (
@@ -55,7 +55,7 @@ export const required = (value, props, components) => {
 
 To validate an component, pass an array of validation functions with the `validations` prop:
 
-```js
+```jsx
 <Input type="text" name="email" validations={[required, email]} />
 ```
 
@@ -65,7 +65,7 @@ Let's put it all together:
 <Form>
     <div className="form-group">
         <label>{'E-mail*'}</label>
-        <Input type="text" name="email" className="form-control" validations={[required, email]} />
+        <Input type="email" name="email" className="form-control" validations={[required, email]} />
     </div>
     <div className="form-group">
         <label>{'Password*'}</label>
@@ -90,7 +90,7 @@ Let's put it all together:
 
 ### Sign In
 
-```js
+```jsx
 import Form from '@trendmicro/react-validation/components/form';
 import Input from '@trendmicro/react-validation/components/input';
 import React, { Component } from 'react';
@@ -116,7 +116,7 @@ export default class SignIn extends Component {
                 <div className="form-group">
                     <label>{'E-mail*'}</label>
                     <Input
-                        type="text"
+                        type="email"
                         name="email"
                         className="form-control"
                         validations={[validations.required, validations.email]}
@@ -156,13 +156,17 @@ export default class SignIn extends Component {
 
 ## Form Component
 
-```js
+```jsx
 <Form
     {...props}
     ref={node => {
         this.form = node;
     }}
-    onValidate={handleValidation}
+    onValidate={err => { // Error-first callback
+        if (err) {
+            return;
+        }
+    }}
 />
 ```
 ### Methods
@@ -179,12 +183,12 @@ Validates the form or validates controls with the specific name.
 **Example**
 
 ```js
-this.form.validate(err => {
+this.form.validate(err => { // Error-first callback
     if (err) {
         return;
     }
     
-    // Passed validations
+    const values = this.form.getValues();
 })
 ```
 
@@ -218,7 +222,7 @@ this.form.errors;
 
 ## Input Component
 
-```js
+```jsx
 <Input name="name" validations={[required]} />
 ```
 
@@ -234,7 +238,7 @@ error   | Node    | null    |
 
 ## Select Component
 
-```js
+```jsx
 <Select name="gender" value="" className="form-control" validations={[required]}>
     <option value="">Select your gender</option>
     <option value="male">Male</option>
@@ -253,7 +257,7 @@ error   | Node    | null    |
 
 ## Textarea Component
 
-```js
+```jsx
 <Textarea name="content" validations={[required]} />
 ```
 
@@ -268,9 +272,9 @@ error   | Node    | null    |
 
 ## Creating Custom Components
 
-Instead of using [built-it components](https://github.com/trendmicro-frontend/react-validation#built-in-components), you can use `createForm` and `createFormControl` HOCs to create your own components:
+Instead of using built-it components, you can use `createForm` and `createFormControl` HOCs to create your own components:
 
-```js
+```jsx
 import { createForm, createFormControl } from '@trendmicro/react-validation';
 
 // Form component
@@ -294,12 +298,12 @@ const MyInput = createFormControl()(Input);
 
 #### Arguments
 * [options] *(Object)*: The options object.
-* [options.onValidate] *(Function)*: A callback function that will be called on validation.
-* [component] *(Node)*: The component to be wrapped.
+* [options.onValidate] *(Function)*: An error-first callback to be called on validation.
+* component *(Node)*: The component to be wrapped.
 
 ### createFormControl(options)(component)
 * [options] *(Object)*: The options object.
-* [component] *(Node)*: The component to be wrapped.
+* component *(Node)*: The component to be wrapped.
 
 ## License
 
