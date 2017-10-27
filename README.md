@@ -208,7 +208,13 @@ this.form.getValues();
 // -> { email: "somebody@example.com", password: "......" }
 ```
 
-### Properties
+### Props
+
+Name        | Type     | Default | Description
+:---------- | :------- | :------ | :----------
+onValidate  | function |         | An error-first callback to be called on validation.
+
+### Class Properties
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
@@ -227,7 +233,14 @@ this.form.errors;
 <Input name="name" validations={[required]} />
 ```
 
-### Properties
+### Props
+
+Name        | Type   | Default | Description
+:---------- | :----- | :------ | :----------
+name        | string | N/A     | *(Required)* The name of the form control.
+validations | array  | []      | An array of validation functions.
+
+### Class Properties
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
@@ -247,7 +260,14 @@ error   | Node    | null    |
 </Select>
 ```
 
-### Properties
+### Props
+
+Name        | Type   | Default | Description
+:---------- | :----- | :------ | :----------
+name        | string | N/A     | *(Required)* The name of the form control.
+validations | array  | []      | An array of validation functions.
+
+### Class Properties
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
@@ -262,7 +282,14 @@ error   | Node    | null    |
 <Textarea name="content" validations={[required]} />
 ```
 
-### Properties
+### Props
+
+Name        | Type   | Default | Description
+:---------- | :----- | :------ | :----------
+name        | string | N/A     | *(Required)* The name of the form control.
+validations | array  | []      | An array of validation functions.
+
+### Class Properties
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
