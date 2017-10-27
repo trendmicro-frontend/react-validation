@@ -22,6 +22,8 @@ Demo: https://trendmicro-frontend.github.io/react-validation
         Form, Input, Select, Textarea
     } from '@trendmicro/react-validation';
     ```
+ 
+Note: [Validator.js](https://github.com/chriso/validator.js) is a library for validating and sanitizing strings. It can save your time when writing validation functions. Check out a list of available validators at https://github.com/chriso/validator.js#validators.
 
 ## Usage
 
