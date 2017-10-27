@@ -272,7 +272,7 @@ error   | Node    | null    |
 
 ## Creating Custom Components
 
-Instead of using built-it components, you can use `createForm` and `createFormControl` HOCs to create your own components:
+Instead of using built-it components, you can use `createForm` and `createFormControl` to wrap your own components:
 
 ```jsx
 import { createForm, createFormControl } from '@trendmicro/react-validation';
