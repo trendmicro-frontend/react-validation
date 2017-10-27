@@ -18,17 +18,15 @@ Demo: https://trendmicro-frontend.github.io/react-validation
 
   ```js
   import { createForm, createFormControl } from '@trendmicro/react-validation';
-  import Form from '@trendmicro/react-validation/components/form';
-  import Input from '@trendmicro/react-validation/components/input';
-  import Select from '@trendmicro/react-validation/components/select';
-  import Textarea from '@trendmicro/react-validation/components/texarea';
+  import Form from '@trendmicro/react-validation/lib/components/form';
+  import Input from '@trendmicro/react-validation/lib/components/input';
+  import Select from '@trendmicro/react-validation/lib/components/select';
+  import Textarea from '@trendmicro/react-validation/lib/components/texarea';
   ```
 
 ## Usage
 
-### Validations
-
-First, you need to define some validation functions, like so:
+First, define your own validation functions, like so:
 
 ```js
 import isEmail from 'validator/lib/isEmail';
@@ -55,14 +53,42 @@ export const required = (value, props, components) => {
 };
 ```
 
-To validate an Input component, pass an array of validation functions with the `validations` prop:
+To validate an component, pass an array of validation functions with the `validations` prop:
 
 ```js
 <Input type="text" name="email" validations={[required, email]} />
-<Input type="password" name="password" validations={[required]} />
 ```
 
-### Sign-In Example
+Let's put it all together:
+
+```jsx
+<Form>
+    <div className="form-group">
+        <label>{'E-mail*'}</label>
+        <Input type="text" name="email" className="form-control" validations={[required, email]} />
+    </div>
+    <div className="form-group">
+        <label>{'Password*'}</label>
+        <Input type="password" name="password" className="form-control" validations={[required]} />
+    </div>
+    <div className="form-group">
+        <label>{'Gender*'}</label>
+        <Select name="gender" value="" className="form-control" validations={[required]}>
+            <option value="">Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </Select>
+    </div>
+    <div className="form-group">
+        <label>{'Description'}</label>
+        <Textarea name="description" validations={[]} />
+    </div>
+</Form>
+```
+
+## Examples
+
+### Sign In
 
 ```js
 import Form from '@trendmicro/react-validation/components/form';
@@ -128,17 +154,121 @@ export default class SignIn extends Component {
 }
 ```
 
-## Built-in Components
+## Form Component
 
-### Form Component
+```js
+<Form
+    {...props}
+    ref={node => {
+        this.form = node;
+    }}
+    onValidate={handleValidation}
+/>
+```
+### Methods
 
-### Input Component
+### validate([name], [callback])
 
-### Select Component
+Validates the form or validates controls with the specific name.
 
-### Textarea Component
+**Arguments**
+
+1. [name] *(String)*: The name property in the control.
+2. [callback] *(Function)*: The error-first callback.
+
+**Example**
+
+```js
+this.form.validate(err => {
+    if (err) {
+        return;
+    }
+    
+    // Passed validations
+})
+```
+
+### getValues()
+
+Get form control values.
+
+**Return**
+
+*(Object)*: Returns an object containing name/value pairs.
+
+**Example**
+
+```js
+this.form.getValues();
+// -> { email: "somebody@example.com", password: "......" }
+```
+
+### Properties
+
+Name    | Type    | Default | Description
+:------ | :------ | :------ | :----------
+errors  | array   | []      | A list of validation errors.
+
+**Example**
+
+```js
+this.form.errors;
+// -> [{...}]
+```
+
+## Input Component
+
+```js
+<Input name="name" validations={[required]} />
+```
+
+### Properties
+
+Name    | Type    | Default | Description
+:------ | :------ | :------ | :----------
+checked | boolean | false   | Whether the control is checked - specifically checkbox and radio inputs.
+value   | string  | ''      | The value of a control.
+blurred | boolean | false   | Whether the control loses focus.
+changed | boolean | false   | Whether content has changed.
+error   | Node    | null    |
+
+## Select Component
+
+```js
+<Select name="gender" value="" className="form-control" validations={[required]}>
+    <option value="">Select your gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+</Select>
+```
+
+### Properties
+
+Name    | Type    | Default | Description
+:------ | :------ | :------ | :----------
+value   | string  | ''      | The value of a control.
+blurred | boolean | false   | Whether the control loses focus.
+changed | boolean | false   | Whether content has changed.
+error   | Node    | null    |
+
+## Textarea Component
+
+```js
+<Textarea name="content" validations={[required]} />
+```
+
+### Properties
+
+Name    | Type    | Default | Description
+:------ | :------ | :------ | :----------
+value   | string  | ''      | The value of a control.
+blurred | boolean | false   | Whether the control loses focus.
+changed | boolean | false   | Whether content has changed.
+error   | Node    | null    |
 
 ## Creating Custom Components
+
+Instead of using [built-it components](https://github.com/trendmicro-frontend/react-validation#built-in-components), you can use `createForm` and `createFormControl` HOCs to create your own components:
 
 ```js
 import { createForm, createFormControl } from '@trendmicro/react-validation';
@@ -149,16 +279,27 @@ const Form = (props) => (
 );
 
 // Input component
-const Input = ({ error, isChanged, isUsed, ...props }) => (
+const Input = ({ error, blurred, changed, ...props }) => (
     <div>
         <input {...props} />
-        {isChanged && isUsed && error}
+        {blurred && changed && error}
     </div>
 );
 
 const MyForm = createForm()(Form);
 const MyInput = createFormControl()(Input);
 ```
+
+### createForm([options])(component)
+
+#### Arguments
+* [options] *(Object)*: The options object.
+* [options.onValidate] *(Function)*: A callback function that will be called on validation.
+* [component] *(Node)*: The component to be wrapped.
+
+### createFormControl(options)(component)
+* [options] *(Object)*: The options object.
+* [component] *(Node)*: The component to be wrapped.
 
 ## License
 
