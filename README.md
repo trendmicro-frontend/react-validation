@@ -245,10 +245,10 @@ validations | array  | []      | An array of validation functions.
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
 checked | boolean | false   | Whether the control is checked - specifically checkbox and radio inputs.
-value   | string  | ''      | The value of a control.
-blurred | boolean | false   | Whether the control loses focus.
-changed | boolean | false   | Whether content has changed.
-error   | Node    | null    |
+value   | string  | ''      | The value of the form control.
+blurred | boolean | false   | Whether the form control loses focus.
+changed | boolean | false   | Whether the value or the checked state has changed.
+error   | Node    | null    | A validation error.
 
 ## Select Component
 
@@ -271,10 +271,10 @@ validations | array  | []      | An array of validation functions.
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
-value   | string  | ''      | The value of a control.
-blurred | boolean | false   | Whether the control loses focus.
-changed | boolean | false   | Whether content has changed.
-error   | Node    | null    |
+value   | string  | ''      | The value of the form control.
+blurred | boolean | false   | Whether the form control loses focus.
+changed | boolean | false   | Whether the value has changed.
+error   | Node    | null    | A validation error.
 
 ## Textarea Component
 
@@ -293,10 +293,10 @@ validations | array  | []      | An array of validation functions.
 
 Name    | Type    | Default | Description
 :------ | :------ | :------ | :----------
-value   | string  | ''      | The value of a control.
-blurred | boolean | false   | Whether the control loses focus.
-changed | boolean | false   | Whether content has changed.
-error   | Node    | null    |
+value   | string  | ''      | The value of the form control.
+blurred | boolean | false   | Whether the form control loses focus.
+changed | boolean | false   | Whether the value has changed.
+error   | Node    | null    | A validation error.
 
 ## Creating Custom Components
 
